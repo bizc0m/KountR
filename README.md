@@ -27,17 +27,19 @@ Toutes les versions autonomes chargent `public/COUNTr-skin.css`. Toute nouvelle 
 
 COUNTr fonctionne sans serveur. Les données sont enregistrées dans le stockage local du navigateur et peuvent être exportées en JSON.
 
-## Bipo V2 : Équilibre quotidien
+## Bipo V2 : les compteurs COUNTr
 
-GitHub Pages : `/Bipo-V2/`. Application statique, sans serveur de données ni dépendance externe.
+GitHub Pages : `/Bipo-V2/`. La V2 reprend l’interface et le moteur de `public/COUNTr-actions.html` : tuiles colorées, clic, onglets, verrouillage, annulation, thèmes, historique et exports.
 
-- Journal daté : humeur, énergie, sommeil, repos, observations, effets et bénéfices ressentis.
-- Prescriptions quotidiennes à horaires fixes, clôture datée, prises confirmées ou non prises déclarées et motifs. Une absence de saisie reste inconnue.
-- Courbes sur 7, 30 et 90 jours, valeurs manquantes conservées, moyennes calculées sur les valeurs renseignées.
-- Plan personnel convenu avec le soignant et agenda des consultations/bilans.
-- Synthèse par période et rubriques choisies, texte téléchargeable et impression/PDF via le navigateur.
-- Sauvegarde JSON complète, restauration validée avec confirmation, effacement ciblé ou total.
+20 compteurs de départ, répartis dans Quotidien, Traitement, Ressentis et Rythme. Les tuiles se personnalisent via leur menu ⋮.
 
-Stockage `localStorage` propre à V2 (`countr-bipo-v2`), séparé de la V1. Aucune migration automatique des compteurs V1. Pas de synchronisation, chiffrement applicatif, messagerie soignant, diagnostic, modification automatique de dose ni notification lorsque la page est fermée. Les rappels sont visibles dans la page ouverte. Les exports sont transmis manuellement par l’utilisateur.
+- Valeurs par jour, saisie de nombres décimaux et échelles avec minimum/maximum. Une absence de saisie reste inconnue.
+- Un clic incrémente un compteur ou confirme une prise ; une seconde confirmation ne double pas la prise.
+- Le bouton ✎ permet de corriger la valeur, déclarer une non prise et ajouter une note.
+- Note quotidienne, repères convenus avec le soignant et échéances cochables dans Suivi.
+- Bilan 7/30/90 jours : valeurs par date et moyennes sur les seuls jours renseignés. Notes et contacts exclus par défaut. Export texte et sauvegarde JSON.
+- Copie facultative de l’onglet Bipo V1, sans modifier son stockage. Les anciens logs incrémentaux se relisent par jour.
+
+Stockage distinct : `countr_bipo_tiles_v2` et `countr_bipo_tiles_tab_v2`. La première ébauche de journal séparé utilisait `countr-bipo-v2` ; cette clé n’est pas effacée. La V1 reste sur `tallycounter_v2`. Pas de synchronisation, chiffrement applicatif, diagnostic ou modification de prescription. Les rappels nécessitent une page ouverte.
 
 Vérifications métier : `TZ=Europe/Paris node --test tests/bipo-v2.test.mjs`.
