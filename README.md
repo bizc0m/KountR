@@ -43,3 +43,18 @@ GitHub Pages : `/Bipo-V2/`. La V2 reprend l’interface et le moteur de `public/
 Stockage distinct : `countr_bipo_tiles_v2` et `countr_bipo_tiles_tab_v2`. La première ébauche de journal séparé utilisait `countr-bipo-v2` ; cette clé n’est pas effacée. La V1 reste sur `tallycounter_v2`. Pas de synchronisation, chiffrement applicatif, diagnostic ou modification de prescription. Les rappels nécessitent une page ouverte.
 
 Vérifications métier : `TZ=Europe/Paris node --test tests/bipo-v2.test.mjs`.
+
+## Bibliothèque de tableaux et éditeur de modèles
+
+- `/` : tableaux par maladie ou besoin ; recherche, création, duplication, import/export du modèle et archivage réversible.
+- `/config/?id=bipo` : éditeur du modèle Bipo. `/config/?new=1` crée un tableau vierge.
+- `/Bipo-V2/?board=<id>` : moteur de tuiles partagé. Sans paramètre, il ouvre Bipo comme auparavant.
+- `/archives/` : ancien catalogue de versions conservé en accès secondaire.
+
+La bibliothèque `countr-board-library-v1` stocke les modèles canoniques (onglets, tuiles, unités, limites, types, largeurs). Les exports de modèles excluent observations, notes et prescriptions du suivi. Un import crée toujours un nouvel identifiant de tableau.
+
+Bipo garde `countr_bipo_tiles_v2`. Les autres tableaux utilisent `countr-board-data-<id>` et `countr-board-tab-<id>`. Un changement de révision fusionne la configuration avec le suivi sans effacer ses logs, notes ou prescriptions ; les définitions des tuiles retirées restent dans `retiredTallies` pour les sauvegardes. Les réglages rapides ne sont repris dans le modèle qu’à son enregistrement dans l’éditeur.
+
+Application locale au navigateur, sans base partagée, comptes patients ou synchronisation. Aucun modèle clinique autre que le POC Bipo n’est fourni ; les tableaux supplémentaires sont créés/configurés par l’utilisateur.
+
+Vérifications : `TZ=Europe/Paris node --test tests/bipo-v2.test.mjs tests/boards.test.mjs`.
