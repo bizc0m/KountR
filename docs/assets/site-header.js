@@ -1,6 +1,12 @@
-/* Reusable header mount. Pages opt in with data-shared-header and data-language-slot. */
-(()=>{'use strict';const base=new URL('../',document.currentScript.src),config=window.CountrSiteConfig||{};let header=document.querySelector('[data-shared-header]');if(!header&&document.body.hasAttribute('data-global-header')){header=document.createElement('div');header.className='shared-site-header';header.dataset.sharedHeader='';header.innerHTML='<a class="brand" href="'+base.href+'">COUNTr <small>V2</small></a><nav aria-label="Navigation commune"><a data-site-link="home">Accueil</a><a data-site-link="library">Mes configurations</a><a data-site-link="support" target="_blank" rel="noopener noreferrer">☕ Soutenir</a></nav><div data-language-slot></div>';document.body.prepend(header);}if(!header)return;
-if(config.brand){const brand=header.querySelector('.brand');if(brand?.firstChild)brand.firstChild.textContent=config.brand}
-for(const a of document.querySelectorAll('[data-site-link]')){const item=config.links?.[a.dataset.siteLink];if(!item)continue;try{const url=new URL(item.href,base);if(!['http:','https:'].includes(url.protocol))continue;a.href=url.href;if(item.label)a.textContent=item.label}catch(e){/* Retain the working static link. */}}
-const slot=header.querySelector('[data-language-slot]'),bar=document.querySelector('[data-countr-language]');if(slot&&bar)slot.append(bar);
+/* Apply shared links to existing headers without adding another navigation bar. */
+(()=>{'use strict';
+const base=new URL('../',document.currentScript.src),config=window.CountrSiteConfig||{};
+const header=document.querySelector('[data-shared-header]')||document.querySelector('header.top,header .header-inner');
+if(!header)return;
+if(config.brand){const brand=header.querySelector('.brand');if(brand?.firstChild)brand.firstChild.textContent=brand.firstChild.textContent.replace(/^COUNTr/,config.brand)}
+let coffee=header.querySelector('.coffeeBtn,[data-site-link="support"]');
+if(!coffee){coffee=document.createElement('a');coffee.className='coffeeBtn';coffee.target='_blank';coffee.rel='noopener noreferrer';header.append(coffee)}
+coffee.dataset.siteLink='support';coffee.textContent='Payez-moi un café ☕';
+for(const a of document.querySelectorAll('[data-site-link]')){const item=config.links?.[a.dataset.siteLink];if(!item)continue;try{const url=new URL(item.href,base);if(!['http:','https:'].includes(url.protocol))continue;a.href=url.href;if(item.label&&a!==coffee)a.textContent=item.label}catch(e){}}
+const bar=document.querySelector('[data-countr-language]');if(bar){bar.classList.add('inline-language');const slot=header.querySelector('[data-language-slot]');if(slot)slot.append(bar);else header.append(bar)}
 })();

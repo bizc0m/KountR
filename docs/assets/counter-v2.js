@@ -22,8 +22,10 @@ function mount(a){
  try{timerRaw=localStorage.getItem(timerKey);timer=timerRaw?JSON.parse(timerRaw):null;if(timer&&(!Number.isFinite(timer.elapsedMs)||timer.elapsedMs<0||!a.validDay(timer.day)||typeof timer.tileId!=='string'||timer.startedAt!==null&&!Number.isFinite(timer.startedAt)))timer=null}catch(e){timer=null}
  function timerFresh(){if(timerMemory)return true;try{const raw=localStorage.getItem(timerKey);if(raw!==timerRaw){timerRaw=raw;timer=raw?JSON.parse(raw):null;a.notify('Chronomètre modifié dans un autre onglet. Vérifiez la durée.');return false}}catch(e){a.notify('Chronomètre indisponible dans le stockage.');return false}return true;}
  function writeTimer(value){timer=value;try{if(value===null)localStorage.removeItem(timerKey);else localStorage.setItem(timerKey,JSON.stringify(value));timerRaw=localStorage.getItem(timerKey)}catch(e){timerMemory=true;a.notify('Durée conservée en mémoire seulement. Enregistrez-la avant de fermer.')}updateClock();}
- const toolbar=d.createElement('div');toolbar.className='v2-toolbar';toolbar.innerHTML='<div class="v2-views" role="group" aria-label="Affichage"><button data-v2-view="grid">▦ <span>Grille</span></button><button data-v2-view="list">☰ <span>Liste</span></button><button data-v2-view="focus">⛶ <span>Plein écran</span></button></div><select id="v2Focus" aria-label="Tuile à afficher" hidden></select><button id="v2TimerOpen">⏱ <span>Chronomètre</span></button><button id="v2FullWindow" title="Agrandir la fenêtre" aria-label="Agrandir la fenêtre" hidden>⛶</button><a id="v2Backup" class="v2-export" href="#">↓ <span>Sauvegarder</span></a>';
- grid.before(toolbar);
+ const toolbar=d.createElement('div');toolbar.className='v2-controls';toolbar.innerHTML='<select id="v2View" aria-label="Affichage"><option value="grid">Grille</option><option value="list">Liste</option><option value="focus">Plein écran</option></select><button id="v2TimerOpen" type="button" title="Chronomètre" aria-label="Chronomètre">⏱</button><button id="v2FullWindow" type="button" title="Agrandir la fenêtre" aria-label="Agrandir la fenêtre" hidden>⛶</button>';
+ $('#lock').before(toolbar);
+ const focusSelect=d.createElement('select');focusSelect.id='v2Focus';focusSelect.setAttribute('aria-label','Tuile à afficher');focusSelect.hidden=true;$('.bipoBar').append(focusSelect);
+ const backup=d.createElement('button');backup.id='v2Backup';backup.className='btn';backup.textContent='Sauvegarder';$('#historyModal .actions').prepend(backup);
  const quick=d.createElement('dialog');quick.id='v2Quick';quick.className='v2-dialog';quick.innerHTML='<div class="v2-dialog-head"><h2 id="v2QuickTitle"></h2><button data-v2-close aria-label="Fermer">×</button></div><div id="v2QuickActions" class="v2-quick-actions"></div>';d.body.append(quick);
  const clock=d.createElement('dialog');clock.id='v2Clock';clock.className='v2-dialog';clock.innerHTML='<div class="v2-dialog-head"><h2>Chronomètre</h2><button data-v2-close aria-label="Fermer">×</button></div><label>Tuile de durée<select id="v2TimerTile"></select></label><p id="v2TimerDay"></p><output id="v2ClockValue" aria-live="off">00:00:00</output><p class="v2-hint">La durée continue si vous fermez ce panneau. Enregistrer ajoute la durée à la valeur du jour de départ.</p><div class="v2-clock-actions"><button id="v2Start">Démarrer</button><button id="v2Pause">Pause</button><button id="v2Resume">Reprendre</button><button id="v2Commit">Enregistrer la durée</button><button id="v2Discard">Effacer la durée</button><button id="v2AddDuration">+ Tuile Durée</button></div>';d.body.append(clock);
  const focusedTile=()=>a.tiles().find(t=>t.tabId===a.active()&&t.id===a.state().settings.v2Focus)||a.tiles().find(t=>t.tabId===a.active());
@@ -59,7 +61,7 @@ function mount(a){
  for(const dialog of [quick,clock])dialog.querySelector('[data-v2-close]').onclick=()=>dialog.close();
  $('#v2Backup').onclick=e=>{e.preventDefault();a.backup();};
  $('#v2FullWindow').onclick=()=>{const el=d.documentElement;if(d.fullscreenElement)d.exitFullscreen?.();else if(el.requestFullscreen)el.requestFullscreen().catch(()=>a.notify('Grand affichage actif ; plein écran indisponible.'));else a.notify('Grand affichage actif ; plein écran indisponible.');};
- toolbar.querySelectorAll('[data-v2-view]').forEach(b=>b.onclick=()=>{a.state().settings.v2View=b.dataset.v2View;a.save();a.render();});
+ $('#v2View').onchange=e=>{a.state().settings.v2View=e.target.value;a.save();a.render();};
  $('#v2Focus').onchange=e=>{a.state().settings.v2Focus=e.target.value;a.save();a.render();};
  function shift(t,dir){if(!canWrite())return;const next=shifted(t,a.read(t,a.day()).value,dir);if(next===null){a.notify('Limite atteinte ou confirmation à corriger avec ✎.');return;}a.record(t,next,a.read(t,a.day()).note,a.day());}
  function menu(t){
@@ -91,7 +93,7 @@ function mount(a){
  grid.addEventListener('contextmenu',e=>{const card=e.target.closest('[data-tally-id]');if(card&&!e.target.closest('button')){e.preventDefault();const t=a.tiles().find(x=>x.id===card.dataset.tallyId);if(t)menu(t);}});
  function enhance(){
   const mode=['grid','list','focus'].includes(a.state().settings.v2View)?a.state().settings.v2View:'grid';grid.classList.remove('v2-grid','v2-list','v2-focus');grid.classList.add('v2-'+mode);
-  toolbar.querySelectorAll('[data-v2-view]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.v2View===mode)));
+  $('#v2View').value=mode;
   const focus=focusedTile(),select=$('#v2Focus');select.hidden=$('#v2FullWindow').hidden=mode!=='focus';select.innerHTML=a.tiles().filter(t=>t.tabId===a.active()).map(t=>`<option value="${esc(t.id)}">${esc(t.name)}</option>`).join('');if(focus)select.value=focus.id;
   const configureLink=$('#configureBoard');if(configureLink){configureLink.hidden=a.locked();configureLink.setAttribute('aria-disabled',String(a.locked()));}
   grid.querySelectorAll('[data-tally-id]').forEach(card=>{
