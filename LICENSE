@@ -8,32 +8,39 @@ KountR / COUNTr — © 2026 bizc0m
 2. Permissions. Pour un usage strictement non commercial, vous êtes
    autorisé à :
    - utiliser, copier et modifier le logiciel ;
-   - l'habiller et le relooker (thèmes, couleurs, marque), y compris en
-     marque blanche : la marque, le nom et les liens de l'auteur peuvent
-     être retirés ou remplacés ;
-   - redistribuer le logiciel original ou vos versions modifiées,
-     sous réserve de respecter la présente licence.
+   - le redistribuer, original ou modifié, sous réserve de respecter
+     la présente licence.
 
-3. Gratuité totale. Toute distribution du logiciel ou d'une version
+3. Marque blanche sous conditions. Retirer ou remplacer la marque, le
+   nom et les liens de l'auteur n'est permis que si la version
+   rebrandée :
+   - reste intégralement gratuite, au sens de l'article 4 ;
+   - conserve le stockage local des données : aucun compte obligatoire,
+     aucun traceur, aucun envoi réseau ;
+   - n'ajoute ni diagnostic, ni score clinique validé, ni promesse
+     médicale ;
+   - conserve la présente licence et la transmet à ses utilisateurs.
+
+4. Gratuité totale. Toute distribution du logiciel ou d'une version
    modifiée doit demeurer intégralement gratuite : ni vente, ni
    abonnement, ni don obligatoire, ni fonctionnalité réservée par
    paiement, ni accès conditionné à une contrepartie.
 
-4. Interdictions. Tout usage commercial, direct ou indirect, est
+5. Interdictions. Tout usage commercial, direct ou indirect, est
    interdit. Il est notamment interdit de vendre le logiciel, de le
    proposer comme service payant ou freemium, ou d'en restreindre
    l'accès complet contre paiement. Seul un don volontaire, jamais
    exigé ni conditionnant l'accès, est toléré.
 
-5. Aucun conseil médical. Ce logiciel ne fournit ni diagnostic, ni
+6. Aucun conseil médical. Ce logiciel ne fournit ni diagnostic, ni
    score clinique validé, ni consigne thérapeutique. Il ne remplace
    pas l'avis d'un professionnel de santé.
 
-6. Logiciel en l'état. LE LOGICIEL EST FOURNI « EN L'ÉTAT », SANS
+7. Logiciel en l'état. LE LOGICIEL EST FOURNI « EN L'ÉTAT », SANS
    GARANTIE D'AUCUNE SORTE, EXPRESSE OU IMPLICITE. LES AUTEURS ET
    DÉTENTEURS DE DROITS NE SAURAIENT ÊTRE TENUS RESPONSABLES DE TOUT
    DOMMAGE LIÉ À SON UTILISATION.
 
-7. Divers. Si l'une des clauses est jugée inapplicable, les autres
+8. Divers. Si l'une des clauses est jugée inapplicable, les autres
    demeurent en vigueur. La présente licence couvre l'ensemble du
    dépôt, documents et code compris.
