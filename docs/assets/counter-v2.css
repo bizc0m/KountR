@@ -11,3 +11,5 @@ body[data-global-header]>.top .brand{font-size:12px;white-space:normal;max-width
 body[data-global-header]>.top .tool{height:36px;min-height:36px}body[data-global-header]>.top .lock{flex:0 0 44px;font-size:20px}
 .bipoBar #v2Focus{width:auto;max-width:100%;min-height:36px}.grid .addTile{min-height:44px;max-height:44px;align-self:start}.bipoHint:empty{display:none}
 @media(max-width:600px){.v2-controls button{min-width:44px;height:44px}.v2-controls select{height:44px}body[data-global-header]>.top .tool{min-height:44px;height:44px}.top .tools{gap:4px}.v2-dialog .v2-hint{display:none}}
+.v2-move{display:none;flex:1;min-height:44px;border:0;border-radius:7px;background:#0002;color:inherit;font-size:20px}.v2-move:disabled{opacity:.25}
+@media(max-width:600px){.v2-move{display:block}.v2-drag{display:none}}

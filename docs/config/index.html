@@ -1,10 +1,105 @@
 <!doctype html>
-<html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>COUNTr · Atelier de tuiles</title><link rel="stylesheet" href="../assets/workspace.css"><script src="../assets/boards.js" defer></script><script src="editor.js" defer></script><link rel="stylesheet" href="../assets/language.css"><script src="../assets/locales.js" defer></script><script src="../assets/language.js" defer></script><link rel="stylesheet" href="../assets/shared-header.css?v=2.0.1"><script src="../assets/site-config.js" defer></script><script src="../assets/site-header.js?v=2.0.1" defer></script></head>
-<body data-global-header class="visual-editor" data-view="edit"><header><div class="header-inner"><a class="brand" href="../">COUNTr <span>Atelier de tuiles</span></a><div class="header-actions"><span id="saveState" class="status" role="status"></span><button id="saveModel">Enregistrer</button><button class="primary" id="openBoard">Enregistrer et ouvrir →</button></div></div></header>
-<div id="editorError" class="error" role="alert" hidden></div><nav class="mobile-view" aria-label="Affichage de l’éditeur"><button data-view="edit" aria-pressed="true">✎ Modifier</button><button data-view="preview" aria-pressed="false">▦ Aperçu</button></nav>
-<main class="studio" id="editorBody"><section class="canvas"><div class="section-head"><div><p class="eyebrow">Votre compteur, à votre façon</p><h1>Composez vos tuiles.</h1></div><button id="addTab">+ Onglet</button></div><p id="previewHint">Sélectionnez une tuile pour la modifier.</p><div class="canvas-tools"><button id="editTab">✎ Modifier l’onglet</button><button id="testPreview" aria-pressed="false">▶ Tester les interactions</button></div><div id="previewTabs" class="preview-tabs" role="tablist" aria-label="Onglets du compteur"></div><div id="previewGrid" class="preview-grid"></div><p class="help">Valeurs d’exemple, sans écriture dans votre historique.</p></section>
-<aside class="inspector" aria-labelledby="inspectorTitle"><div class="section-head"><h2 id="inspectorTitle">Votre tuile</h2><span id="selectionIcon" aria-hidden="true">✦</span></div><p id="emptySelection">Cliquez sur une tuile ou ajoutez-en une avec +.</p><form id="tileForm" hidden><label>Nom de la tuile<input name="name" maxlength="80" required></label><label>Icône ou emoji<input name="icon" maxlength="20"></label><div class="emoji-choices" id="emojiChoices" aria-label="Icônes rapides"></div><label>Couleur<input type="color" name="color"></label><div id="colorChoices" class="color-choices" aria-label="Couleurs rapides"></div>
-<fieldset><legend>Largeur</legend><div class="choice-row" id="widthChoices"><button type="button" data-size="third">▥<br>1/3</button><button type="button" data-size="half">◧<br>1/2</button><button type="button" data-size="full">▬<br>Pleine ligne</button></div></fieldset><fieldset><legend>Fonctionnement</legend><div class="type-choices" id="typeChoices"><button type="button" data-kind="count">＋ Compteur</button><button type="button" data-kind="value">↔ Valeur / échelle</button><button type="button" data-kind="med">✓ Confirmation de prise</button></div></fieldset>
-<div class="fields"><label>Incrément<input name="step" type="number" min="0.000001" step="any" required></label><label>Unité<input name="unit" maxlength="20" placeholder="h, min…"></label><label>Minimum<input name="bipoMin" type="number" step="any" placeholder="Sans limite"></label><label>Maximum<input name="bipoMax" type="number" step="any" placeholder="Sans limite"></label></div><details><summary>Avancé</summary><label>Onglet<select name="tabId"></select></label><label>Objectif<input name="goal" type="number" step="any"></label><label>Aide à la saisie<textarea name="help" maxlength="500"></textarea></label><div class="actions"><button type="button" id="moveUp">↑ Monter</button><button type="button" id="moveDown">↓ Descendre</button><button type="button" id="duplicateTile">⧉ Dupliquer</button><button type="button" id="deleteTile" class="danger">Retirer la tuile</button></div></details><p class="dialog-error" id="tileError" role="alert"></p></form>
-<details class="board-settings"><summary>Réglages du tableau</summary><label>Nom du tableau<input id="boardName" maxlength="80" required></label><label>Description<textarea id="description" maxlength="500"></textarea></label><details><summary>Avancé</summary><label>Catégorie<input id="condition" maxlength="80"></label><button id="exportModel">Exporter le modèle JSON</button></details><a class="button" href="../library.html">Mes configurations</a></details><p class="help">Enregistrer modifie la configuration. Vos valeurs et notes restent conservées.</p></aside></main>
-<dialog id="tabDialog"><form id="tabForm"><div class="dialog-head"><h2>Votre onglet</h2><button type="button" id="closeTab" aria-label="Fermer">×</button></div><label>Nom<input name="name" maxlength="60" required></label><label>Couleur<input name="color" type="color"></label><div class="actions"><button type="button" id="tabLeft">← Déplacer</button><button type="button" id="tabRight">Déplacer →</button><button type="button" class="danger" id="deleteTabConfig">Retirer l’onglet</button><button class="primary">Valider</button></div></form></dialog><div id="toast" role="status" hidden></div></body></html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>COUNTr · Atelier de tuiles</title>
+    <link rel="stylesheet" href="../assets/workspace.css" />
+    <script src="../assets/boards.js" defer></script>
+    <script src="editor.js" defer></script>
+    <link rel="stylesheet" href="../assets/language.css" />
+    <script src="../assets/locales.js" defer></script>
+    <script src="../assets/language.js" defer></script>
+    <link rel="stylesheet" href="../assets/shared-header.css?v=2.0.1" />
+    <script src="../assets/site-config.js" defer></script>
+    <script src="../assets/site-header.js?v=2.0.1" defer></script>
+  </head>
+  <body data-global-header class="visual-editor" data-view="edit">
+    <header>
+      <div class="header-inner">
+        <a class="brand" href="../">COUNTr <span>Atelier de tuiles</span></a>
+        <div class="header-actions"><span id="saveState" class="status" role="status"></span><button id="saveModel">Enregistrer</button><button class="primary" id="openBoard">Enregistrer et ouvrir →</button></div>
+      </div>
+    </header>
+    <div id="editorError" class="error" role="alert" hidden></div>
+    <nav class="mobile-view" aria-label="Affichage de l’éditeur"><button data-view="edit" aria-pressed="true">✎ Modifier</button><button data-view="preview" aria-pressed="false">▦ Aperçu</button></nav>
+    <main class="studio" id="editorBody">
+      <section class="canvas">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">Votre compteur, à votre façon</p>
+            <h1>Composez vos tuiles.</h1>
+          </div>
+          <button id="addTab">+ Onglet</button>
+        </div>
+        <p id="previewHint">Sélectionnez une tuile pour la modifier.</p>
+        <div class="canvas-tools"><button id="editTab">✎ Modifier l’onglet</button><button id="testPreview" aria-pressed="false">▶ Tester les interactions</button></div>
+        <div id="previewTabs" class="preview-tabs" role="tablist" aria-label="Onglets du compteur"></div>
+        <div id="previewGrid" class="preview-grid"></div>
+        <p class="help">Valeurs d’exemple, sans écriture dans votre historique.</p>
+      </section>
+      <aside class="inspector" aria-labelledby="inspectorTitle">
+        <div class="section-head">
+          <h2 id="inspectorTitle">Votre tuile</h2>
+          <span id="selectionIcon" aria-hidden="true">✦</span>
+        </div>
+        <p id="emptySelection">Cliquez sur une tuile ou ajoutez-en une avec +.</p>
+        <form id="tileForm" hidden>
+          <label>Nom de la tuile<input name="name" maxlength="80" required /></label><label>Icône ou emoji<input name="icon" maxlength="20" /></label>
+          <div class="emoji-choices" id="emojiChoices" aria-label="Icônes rapides"></div>
+          <label>Couleur<input type="color" name="color" /></label>
+          <div id="colorChoices" class="color-choices" aria-label="Couleurs rapides"></div>
+          <fieldset>
+            <legend>Largeur</legend>
+            <div class="choice-row" id="widthChoices">
+              <button type="button" data-size="third">▥<br />1/3</button><button type="button" data-size="half">◧<br />1/2</button><button type="button" data-size="full">▬<br />Pleine ligne</button>
+            </div>
+          </fieldset>
+          <fieldset>
+            <legend>Fonctionnement</legend>
+            <div class="type-choices" id="typeChoices"><button type="button" data-kind="count">＋ Compteur</button><button type="button" data-kind="value">↔ Valeur / échelle</button><button type="button" data-kind="med">✓ Confirmation de prise</button></div>
+          </fieldset>
+          <div class="fields">
+            <label>Incrément<input name="step" type="number" min="0.000001" step="any" required /></label><label>Unité<input name="unit" maxlength="20" placeholder="h, min…" /></label><label>Minimum<input name="bipoMin" type="number" step="any" placeholder="Sans limite" /></label><label>Maximum<input name="bipoMax" type="number" step="any" placeholder="Sans limite" /></label>
+          </div>
+          <details>
+            <summary>Avancé</summary>
+            <label>Onglet<select name="tabId"></select></label
+            ><label
+              >Note après un clic<select name="noteMode">
+                <option value="never">Jamais — clic immédiat</option>
+                <option value="optional">Facultative</option>
+                <option value="required">Obligatoire</option>
+              </select></label
+            ><label>Objectif<input name="goal" type="number" step="any" /></label><label>Aide à la saisie<textarea name="help" maxlength="500"></textarea></label>
+            <div class="actions"><button type="button" id="moveUp">↑ Monter</button><button type="button" id="moveDown">↓ Descendre</button><button type="button" id="duplicateTile">⧉ Dupliquer</button><button type="button" id="deleteTile" class="danger">Retirer la tuile</button></div>
+          </details>
+          <p class="dialog-error" id="tileError" role="alert"></p>
+        </form>
+        <details class="board-settings">
+          <summary>Réglages du tableau</summary>
+          <label>Nom du tableau<input id="boardName" maxlength="80" required /></label><label>Description<textarea id="description" maxlength="500"></textarea></label>
+          <label>Logo local<input id="boardLogo" type="file" accept="image/png,image/jpeg,image/webp,image/svg+xml" /></label>
+          <div class="actions"><img id="boardLogoPreview" alt="Aperçu du logo" hidden style="max-width: 120px; max-height: 64px; object-fit: contain" /><button type="button" id="removeBoardLogo">Retirer le logo</button></div>
+          <details>
+            <summary>Avancé</summary>
+            <label>Catégorie<input id="condition" maxlength="80" /></label><button id="exportModel">Exporter le modèle JSON</button>
+          </details>
+          <a class="button" href="../library.html">Mes configurations</a>
+        </details>
+        <p class="help">Enregistrer modifie la configuration. Vos valeurs et notes restent conservées.</p>
+      </aside>
+    </main>
+    <dialog id="tabDialog">
+      <form id="tabForm">
+        <div class="dialog-head">
+          <h2>Votre onglet</h2>
+          <button type="button" id="closeTab" aria-label="Fermer">×</button>
+        </div>
+        <label>Nom<input name="name" maxlength="60" required /></label><label>Couleur<input name="color" type="color" /></label>
+        <div class="actions"><button type="button" id="tabLeft">← Déplacer</button><button type="button" id="tabRight">Déplacer →</button><button type="button" class="danger" id="deleteTabConfig">Retirer l’onglet</button><button class="primary">Valider</button></div>
+      </form>
+    </dialog>
+    <div id="toast" role="status" hidden></div>
+  </body>
+</html>
