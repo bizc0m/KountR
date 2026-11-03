@@ -5,3 +5,4 @@
 @media(prefers-reduced-motion:reduce){.counter-card{transition:none}}
 
 .site-nav .coffee-link{padding:5px 10px;min-height:36px;background:#ffdd00;color:#111318!important;border:1px solid #ffea72;border-radius:7px;font-weight:800;white-space:nowrap}
+.home-privacy{margin:4px 0 0;color:var(--muted);font-size:11px}

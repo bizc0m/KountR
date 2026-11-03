@@ -24,7 +24,11 @@ Toutes les versions autonomes chargent `docs/versions/COUNTr-skin.css`. Toute no
 
 ## Données
 
-COUNTr fonctionne sans serveur. Les données sont enregistrées dans le stockage local du navigateur et peuvent être exportées en JSON.
+COUNTr fonctionne sans serveur ni compte : aucune donnée ne quitte le navigateur, aucun traceur, aucun envoi réseau. Les données sont enregistrées dans le stockage local du navigateur et peuvent être exportées en JSON.
+
+## Licence
+
+Code publié sous licence MIT (voir `LICENSE`).
 
 ## Bipo V2 : les compteurs COUNTr
 
@@ -41,7 +45,7 @@ GitHub Pages : `/Bipo-V2/`. La V2 reprend l’interface et le moteur de `docs/ap
 
 Stockage distinct : `countr_bipo_tiles_v2` et `countr_bipo_tiles_tab_v2`. La première ébauche de journal séparé utilisait `countr-bipo-v2` ; cette clé n’est pas effacée. La V1 reste sur `tallycounter_v2`. Pas de synchronisation, chiffrement applicatif, diagnostic ou modification de prescription. Les rappels nécessitent une page ouverte.
 
-Vérifications métier : `TZ=Europe/Paris node --test tests/bipo-v2.test.mjs`.
+Vérifications métier : `TZ=Europe/Paris node --test tests/bipo-v2.test.mjs tests/counter-v2.test.mjs`.
 
 ## Bibliothèque de tableaux et éditeur de modèles
 
@@ -56,4 +60,4 @@ Bipo garde `countr_bipo_tiles_v2`. Les autres tableaux utilisent `countr-board-d
 
 Application locale au navigateur, sans base partagée, comptes patients ou synchronisation. Aucun modèle clinique autre que le POC Bipo n’est fourni ; les tableaux supplémentaires sont créés/configurés par l’utilisateur.
 
-Vérifications : `TZ=Europe/Paris node --test tests/bipo-v2.test.mjs tests/boards.test.mjs`.
+Vérifications : `TZ=Europe/Paris node --test tests/*.test.mjs` (Node.js seul, sans installation).
