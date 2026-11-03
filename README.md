@@ -4,9 +4,8 @@ Compteur local autonome : onglets colorables, objectifs, historique, thèmes et 
 
 ## Utiliser
 
-- Version actuelle : `public/COUNTr-actions.html`
+- Version actuelle : `docs/app/index.html`
 - GitHub Pages : contenu sous `docs/`
-- Application publiée : `docs/app/index.html`
 
 ## Sous-pages
 
@@ -21,7 +20,7 @@ Le dépôt conserve les étapes du projet dans des commits séparés : TallyCoun
 
 ## Skin commun
 
-Toutes les versions autonomes chargent `public/COUNTr-skin.css`. Toute nouvelle version doit partir de `public/COUNTr-actions.html` afin de conserver automatiquement le bouton « M’offrir un ☕ » et le skin COUNTr.
+Toutes les versions autonomes chargent `docs/versions/COUNTr-skin.css`. Toute nouvelle version doit partir de `docs/app/index.html` afin de conserver automatiquement le bouton « M’offrir un ☕ » et le skin COUNTr.
 
 ## Données
 
@@ -29,7 +28,7 @@ COUNTr fonctionne sans serveur. Les données sont enregistrées dans le stockage
 
 ## Bipo V2 : les compteurs COUNTr
 
-GitHub Pages : `/Bipo-V2/`. La V2 reprend l’interface et le moteur de `public/COUNTr-actions.html` : tuiles colorées, clic, onglets, verrouillage, annulation, thèmes, historique et exports.
+GitHub Pages : `/Bipo-V2/`. La V2 reprend l’interface et le moteur de `docs/app/index.html` : tuiles colorées, clic, onglets, verrouillage, annulation, thèmes, historique et exports.
 
 20 compteurs de départ, répartis dans Quotidien, Traitement, Ressentis et Rythme. Les tuiles se personnalisent via leur menu ⋮.
 
