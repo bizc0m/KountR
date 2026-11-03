@@ -28,7 +28,7 @@ COUNTr fonctionne sans serveur ni compte : aucune donnée ne quitte le navigateu
 
 ## Licence
 
-Code publié sous licence MIT (voir `LICENSE`).
+Usage non commercial, gratuité totale (voir `LICENSE`) : l'outil est offert sans rétribution aux personnes qui souffrent. La marque blanche est expressément autorisée — thèmes, couleurs, nom et liens remplaçables. Toute distribution, originale ou modifiée, doit rester intégralement gratuite ; la vente ou l'accès payant est interdit.
 
 ## Bipo V2 : les compteurs COUNTr
 
