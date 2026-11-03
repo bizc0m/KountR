@@ -32,15 +32,22 @@ KountR / COUNTr — © 2026 bizc0m
    l'accès complet contre paiement. Seul un don volontaire, jamais
    exigé ni conditionnant l'accès, est toléré.
 
-6. Aucun conseil médical. Ce logiciel ne fournit ni diagnostic, ni
+6. Interdiction de métadonnées. Il est interdit de modifier le
+   logiciel pour y intégrer la moindre métadonnée : télémétrie,
+   traceur, balise, identifiant d'utilisateur ou d'appareil, empreinte,
+   ou toute collecte et transmission de données, quelle qu'en soit la
+   technique ou la finalité. Toute version distribuée doit conserver le
+   stockage strictement local du logiciel original.
+
+7. Aucun conseil médical. Ce logiciel ne fournit ni diagnostic, ni
    score clinique validé, ni consigne thérapeutique. Il ne remplace
    pas l'avis d'un professionnel de santé.
 
-7. Logiciel en l'état. LE LOGICIEL EST FOURNI « EN L'ÉTAT », SANS
+8. Logiciel en l'état. LE LOGICIEL EST FOURNI « EN L'ÉTAT », SANS
    GARANTIE D'AUCUNE SORTE, EXPRESSE OU IMPLICITE. LES AUTEURS ET
    DÉTENTEURS DE DROITS NE SAURAIENT ÊTRE TENUS RESPONSABLES DE TOUT
    DOMMAGE LIÉ À SON UTILISATION.
 
-8. Divers. Si l'une des clauses est jugée inapplicable, les autres
+9. Divers. Si l'une des clauses est jugée inapplicable, les autres
    demeurent en vigueur. La présente licence couvre l'ensemble du
    dépôt, documents et code compris.
