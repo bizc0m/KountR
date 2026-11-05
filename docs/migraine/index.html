@@ -1019,17 +1019,19 @@
     <script src="../assets/language.js" defer></script>
     <link rel="stylesheet" href="../assets/counter-v2.css?v=2.0.1" />
     <link rel="stylesheet" href="../assets/shared-header.css?v=2.0.1" />
-    <link rel="stylesheet" href="notemistress.css?v=3" id="noteMistressSkin" />
+    <link rel="stylesheet" href="notemistress.css?v=3" id="noteMistressSkin" disabled />
+    <link rel="stylesheet" href="ui-skins.css?v=1" />
     <script src="../assets/site-config.js" defer></script>
     <script src="../assets/site-header.js?v=2.0.1" defer></script>
-    <script src="skin-toggle.js?v=1" defer></script>
+    <script src="skin-toggle.js?v=2" defer></script>
   </head>
   <body data-global-header>
     <noscript>JavaScript requis : téléchargez puis ouvrez ce fichier dans Safari ou Chrome.</noscript>
     <header class="top">
-      <a class="coffeeBtn" href="https://buymeacoffee.com/bizcom" target="_blank" rel="noopener">M’offrir un ☕</a>
-      <div class="brand">COUNTr <i>Bipo V2</i></div>
-      <div class="tools"><button class="tool" id="undo" title="Annuler" disabled>↶</button><button class="tool" id="prefs" title="Préférences">⚙</button><button class="tool" id="history" title="Historique">≡</button><button class="tool lock" id="lock" title="Bloquer les réglages">🔓</button></div>
+      <a class="coffeeBtn" id="whiteLabelSupport" href="https://buymeacoffee.com/bizcom" target="_blank" rel="noopener">M’offrir un ☕</a>
+      <img class="boardLogo" id="whiteLabelLogo" alt="" hidden />
+      <div class="brand"><span id="whiteLabelName">COUNTr</span> <i id="whiteLabelSubtitle">Bipo V2</i></div>
+      <div class="tools"><button class="tool" id="undo" title="Annuler" disabled>↶</button><button class="tool" id="prefs" title="Préférences">⚙</button><button class="tool" id="history" title="Historique">≡</button><a class="tool helpTool" id="whiteLabelHelp" target="_blank" rel="noopener" aria-label="Aide" hidden>?</a><button class="tool lock" id="lock" title="Bloquer les réglages">🔓</button></div>
     </header>
     <div class="tabRow">
       <nav class="tabs" id="tabs"></nav>
@@ -1147,7 +1149,7 @@
           <button class="btn saveTop" data-close="prefsModal">Enregistrer et fermer</button>
         </div>
         <div class="section">Affichage</div>
-        <div class="field"><label for="skinSelector">Interface</label><select id="skinSelector"><option value="notemistress">NoteMistress</option><option value="classic">COUNTr sombre</option></select></div>
+        <div class="field"><label for="skinSelector">Interface</label><select id="skinSelector"><option value="dark">COUNTr sombre</option><option value="light">COUNTr clair</option><option value="notemistress">NoteMistress</option><option value="custom">Personnalisé</option></select></div>
         <label class="check"><input id="unified" type="checkbox" />Tailles unifiées pour tous les compteurs</label>
         <div class="row">
           <div class="range">
@@ -1202,6 +1204,17 @@
           <div class="actions">
             <button class="btn danger" id="resetTheme">Réinitialiser le thème</button>
           </div>
+        </details>
+        <details class="advanced" id="whiteLabelPanel">
+          <summary>Marque blanche</summary>
+          <div class="row"><div class="field"><label for="brandNameInput">Nom du produit</label><input class="input" id="brandNameInput" maxlength="40" /></div><div class="field"><label for="brandSubtitleInput">Sous-titre</label><input class="input" id="brandSubtitleInput" maxlength="40" /></div></div>
+          <div class="field"><label for="brandLogoInput">Logo Base64 ou SVG data URL</label><textarea class="cssEditor brandAssetInput" id="brandLogoInput" spellcheck="false"></textarea></div>
+          <div class="field"><label for="brandFaviconInput">Favicon Base64 ou SVG data URL</label><textarea class="cssEditor brandAssetInput" id="brandFaviconInput" spellcheck="false"></textarea></div>
+          <div class="row"><div class="field"><label for="brandHelpInput">Lien d’aide</label><input class="input" id="brandHelpInput" type="url" /></div><div class="field"><label for="brandSupportInput">Lien de soutien</label><input class="input" id="brandSupportInput" type="url" /></div></div>
+          <div class="row"><label class="themeColor">Couleur principale<input type="color" id="brandPrimaryInput" /></label><label class="themeColor">Couleur secondaire<input type="color" id="brandSecondaryInput" /></label></div>
+          <label class="check"><input id="brandHideCountrInput" type="checkbox" />Masquer toute mention COUNTr</label>
+          <div class="actions"><button class="btn" id="brandImport">Importer JSON</button><button class="btn" id="brandExport">Exporter JSON</button><button class="btn danger" id="brandReset">Réinitialiser</button></div>
+          <input id="brandFile" type="file" accept="application/json,.json" hidden />
         </details>
         <div class="section">Configurations JSON</div>
         <div class="actions"><button class="btn" id="importGlobal">Charger global</button><button class="btn" id="exportGlobal">Sauver global</button></div>
