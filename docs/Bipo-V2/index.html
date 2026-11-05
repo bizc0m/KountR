@@ -983,7 +983,9 @@
       }
       @media (max-width: 420px) {
         .installBar {
-          display: none;
+          width: 100%;
+          justify-content: center;
+          flex-wrap: wrap;
         }
         .bipoBar .btn {
           padding: 0 9px;
@@ -1027,7 +1029,14 @@
       <div class="brand">COUNTr <i>Bipo V2</i></div>
       <div class="tools"><button class="tool" id="undo" title="Annuler" disabled>↶</button><button class="tool" id="prefs" title="Préférences">⚙</button><button class="tool" id="history" title="Historique">≡</button><button class="tool lock" id="lock" title="Bloquer les réglages">🔓</button></div>
     </header>
-    <div class="tabRow"><nav class="tabs" id="tabs"></nav></div>
+    <div class="tabRow">
+      <nav class="tabs" id="tabs"></nav>
+      <div class="installBar" aria-label="Installation">
+        <span class="installLabel">Installer l’app —</span>
+        <a class="installLink" href="https://support.apple.com/fr-fr/guide/iphone/iphea86e5236/ios" target="_blank" rel="noopener">iOS ↗</a>
+        <a class="installLink" href="https://support.google.com/chrome/answer/9658361?co=GENIE.Platform%3DAndroid&amp;hl=fr" target="_blank" rel="noopener">Android ↗</a>
+      </div>
+    </div>
     <div class="bipoBar">
       <a class="btn homeLink" href="../">Accueil</a><button class="btn" id="previousDay" aria-label="Jour précédent">‹</button><label class="dayLabel">Jour suivi<input class="input" id="bipoDate" type="date" /></label><button class="btn" id="nextDay" aria-label="Jour suivant">›</button><button class="btn" id="bipoToday">Aujourd’hui</button><a class="btn homeLink" id="configureBoard" href="../config/">Configurer</a><button class="btn" id="dayNote">Note</button><button class="btn" id="bipoPlan">Suivi</button><button class="btn" id="bipoReview">Bilan</button>
     </div>

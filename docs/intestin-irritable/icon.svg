@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <rect width="512" height="512" rx="108" fill="#111318"/>
+  <rect x="86" y="86" width="340" height="340" rx="72" fill="#ffdd00"/>
+  <text x="256" y="315" text-anchor="middle" font-family="monospace" font-size="164" font-weight="800" fill="#111318">CR</text>
+</svg>
