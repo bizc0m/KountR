@@ -1,7 +1,7 @@
 const CACHE_PREFIX = "countr-migraine-";
-const CACHE = `${CACHE_PREFIX}2.2.0`;
+const CACHE = `${CACHE_PREFIX}2.3.0`;
 const FILES = [
-  "./", "./index.html", "./COUNTr-skin.css", "./notemistress.css?v=3", "./skin-toggle.js?v=1",
+  "./", "./index.html", "./COUNTr-skin.css", "./notemistress.css?v=3", "./ui-skins.css?v=1", "./skin-toggle.js?v=2",
   "./counter-core.js", "./engine.js?v=2.1.0", "./storage.js",
   "./manifest.webmanifest", "./icon.svg", "../assets/boards.js", "../assets/counter-v2.js?v=2.1.0",
   "../assets/counter-v2.css?v=2.0.1", "../assets/shared-header.css?v=2.0.1", "../assets/site-config.js", "../assets/site-header.js?v=2.0.1",
