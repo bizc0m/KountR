@@ -1,0 +1,235 @@
+:root {
+  color-scheme: light;
+  --bg: #f5f6f8;
+  --panel: #ffffff;
+  --panel2: #f1f3f5;
+  --line: #d8dde5;
+  --text: #111318;
+  --muted: #697180;
+  --accent: #0a84ff;
+  --danger: #ff453a;
+  --r: 10px;
+}
+
+html,
+body {
+  background: var(--bg) !important;
+  color: var(--text) !important;
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", Inter, sans-serif !important;
+}
+
+body {
+  max-width: 1180px;
+  margin: 0 auto !important;
+  padding-top: max(env(safe-area-inset-top, 0px), 6px) !important;
+}
+
+.top {
+  min-height: 42px;
+  margin: 0 -10px 8px;
+  padding: 0 10px;
+  background: #fff;
+  border-bottom: 1px solid var(--line);
+  gap: 7px;
+}
+
+.brand {
+  color: #111318;
+  font-size: 13px;
+}
+
+.brand i {
+  color: #697180;
+}
+
+.logo,
+.tool,
+.btn,
+.installLink,
+.coffeeBtn {
+  border: 1px solid var(--line) !important;
+  border-radius: 7px !important;
+  background: #f1f3f5 !important;
+  color: #343a46 !important;
+  box-shadow: none !important;
+}
+
+.tool {
+  height: 32px;
+  font-size: 15px;
+}
+
+.tool:hover,
+.btn:hover,
+.installLink:hover {
+  background: #e9edf2 !important;
+}
+
+.tool:active,
+.btn:active,
+.installLink:active {
+  transform: translateY(1px);
+  background: #dfe4ea !important;
+}
+
+.tool:focus-visible,
+.btn:focus-visible,
+.tab:focus-visible,
+.installLink:focus-visible,
+.tile:focus-visible {
+  outline: 2px solid #0a84ff !important;
+  outline-offset: 2px;
+}
+
+.tool.lock {
+  background: #30d158 !important;
+  border-color: #28b84d !important;
+  color: #062b13 !important;
+}
+
+.tool.lock.on {
+  background: #ff453a !important;
+  border-color: #e13830 !important;
+  color: #fff !important;
+}
+
+.coffeeBtn {
+  background: #ffcf40 !important;
+  border-color: #e4b82f !important;
+  color: #2e2400 !important;
+}
+
+.tabRow {
+  margin: 0 0 9px;
+  padding: 0 0 8px;
+  border-bottom: 1px solid var(--line);
+}
+
+.tabs {
+  gap: 3px;
+}
+
+.tab,
+.tabSettings {
+  border-radius: 6px;
+  box-shadow: none !important;
+}
+
+.tab.active {
+  box-shadow: inset 0 -2px 0 #0a84ff !important;
+}
+
+.installLabel {
+  color: #697180;
+}
+
+.installLink {
+  min-height: 30px;
+  font-size: 11px;
+}
+
+.bipoBar {
+  gap: 5px;
+  margin: 6px 0 9px;
+}
+
+.bipoBar .btn,
+.dayLabel input {
+  min-height: 32px;
+  height: 32px;
+  font-size: 11px;
+}
+
+.grid {
+  gap: 8px;
+  grid-auto-rows: 112px;
+}
+
+.tile {
+  border: 1px solid rgba(17, 19, 24, 0.14);
+  border-radius: 10px;
+  box-shadow: 0 1px 2px rgba(16, 24, 40, 0.08) !important;
+  transition: transform 80ms ease, box-shadow 80ms ease;
+}
+
+.tile:hover {
+  box-shadow: 0 4px 12px rgba(16, 24, 40, 0.12) !important;
+}
+
+.tile:active {
+  transform: scale(0.985);
+  box-shadow: 0 1px 2px rgba(16, 24, 40, 0.08) !important;
+}
+
+.dots {
+  background: rgba(17, 19, 24, 0.82);
+}
+
+.addTile {
+  color: #697180;
+  border-color: #aeb5c0;
+  background: #fff;
+}
+
+.overlay {
+  background: rgba(17, 19, 24, 0.38);
+  backdrop-filter: blur(5px);
+}
+
+.sheet {
+  background: #fff;
+  border-color: var(--line);
+  color: #111318;
+  box-shadow: 0 22px 70px rgba(16, 24, 40, 0.22);
+}
+
+.input,
+select,
+.cssEditor,
+.exportExplorer {
+  background: #f5f6f8 !important;
+  color: #111318 !important;
+  border-color: var(--line) !important;
+}
+
+.section,
+.hint,
+.field label,
+.range label,
+.bipoHint,
+.bipoFoot {
+  color: #697180 !important;
+}
+
+@media (max-width: 620px) {
+  body {
+    padding-left: 8px !important;
+    padding-right: 8px !important;
+  }
+
+  .top {
+    margin-left: -8px;
+    margin-right: -8px;
+    padding-left: 8px;
+    padding-right: 8px;
+  }
+
+  .tabRow {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .installBar {
+    justify-content: flex-start;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    transition: none !important;
+    animation: none !important;
+  }
+}
