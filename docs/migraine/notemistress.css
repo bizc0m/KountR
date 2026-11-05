@@ -1,0 +1,414 @@
+:root {
+  color-scheme: light;
+  --bg: #f5f6f8;
+  --panel: #ffffff;
+  --panel2: #f1f3f5;
+  --line: #d8dde5;
+  --text: #111318;
+  --muted: #697180;
+  --accent: #409cff;
+  --danger: #ff453a;
+  --r: 10px;
+}
+
+html,
+body {
+  margin: 0;
+  min-height: 100%;
+  background: #f5f6f8 !important;
+  color: #111318 !important;
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", system-ui, sans-serif !important;
+  font-size: 13px;
+}
+
+body {
+  display: grid;
+  grid-template-columns: 250px minmax(0, 1fr);
+  grid-template-rows: 40px 35px minmax(0, 1fr) auto;
+  padding: env(safe-area-inset-top, 0) env(safe-area-inset-right, 0) env(safe-area-inset-bottom, 0) env(safe-area-inset-left, 0) !important;
+  overflow: hidden;
+}
+
+.top {
+  grid-column: 1 / -1;
+  grid-row: 1;
+  min-width: 0;
+  height: 40px;
+  margin: 0;
+  padding: 0 12px;
+  gap: 8px;
+  background: #fff;
+  border-bottom: 1px solid #d8dde5;
+}
+
+.brand {
+  max-width: none;
+  color: #111318;
+  font-size: 13px;
+  font-weight: 650;
+}
+
+.brand i {
+  color: #969eaa;
+  font-size: 11px;
+  font-weight: 500;
+}
+
+.tools {
+  flex: 0 1 auto;
+  justify-content: flex-end;
+}
+
+.logo,
+.tool,
+.btn,
+.installLink,
+.coffeeBtn {
+  border: 1px solid #d8dde5 !important;
+  border-radius: 6px !important;
+  background: #f1f3f5 !important;
+  color: #343a46 !important;
+  box-shadow: none !important;
+}
+
+.tool {
+  flex: 0 0 34px;
+  width: 34px;
+  height: 28px;
+  font-size: 14px;
+}
+
+.tool:hover,
+.btn:hover,
+.installLink:hover {
+  background: #e9edf2 !important;
+}
+
+.tool:active,
+.btn:active,
+.installLink:active {
+  transform: translateY(1px);
+  background: #d8dde5 !important;
+}
+
+.tool:focus-visible,
+.btn:focus-visible,
+.tab:focus-visible,
+.installLink:focus-visible,
+.tile:focus-visible,
+select:focus-visible,
+input:focus-visible {
+  outline: 2px solid #0a84ff !important;
+  outline-offset: 2px;
+}
+
+.tool.lock {
+  flex-basis: 68px;
+  width: 68px;
+  margin-left: 2px;
+  background: #30d158 !important;
+  border-color: #28b84d !important;
+  color: #102a18 !important;
+}
+
+.tool.lock.on {
+  background: #ff453a !important;
+  border-color: #e23830 !important;
+  color: #fff !important;
+}
+
+.coffeeBtn {
+  height: 26px;
+  padding: 0 9px;
+  background: #ffcf40 !important;
+  border-color: #e4b82f !important;
+  color: #2e2400 !important;
+}
+
+.tabRow {
+  grid-column: 1 / -1;
+  grid-row: 2;
+  height: 35px;
+  min-width: 0;
+  margin: 0;
+  padding: 0 10px;
+  gap: 6px;
+  background: #fff;
+  border-bottom: 1px solid #d8dde5;
+}
+
+.tabRow .tabs {
+  height: 34px;
+  padding: 0;
+  align-items: center;
+  gap: 3px;
+}
+
+.tab {
+  height: 28px;
+  padding: 0 11px;
+  border: 0 !important;
+  border-radius: 6px !important;
+  background: transparent !important;
+  color: #697180 !important;
+  box-shadow: none !important;
+}
+
+.tab.active {
+  background: #e9edf2 !important;
+  color: #111318 !important;
+  box-shadow: inset 0 -2px 0 #409cff !important;
+}
+
+.tabSettings {
+  height: 28px;
+  border: 0 !important;
+  border-radius: 6px !important;
+  background: transparent !important;
+  color: #697180 !important;
+}
+
+.installBar {
+  flex-wrap: nowrap;
+}
+
+.installLabel {
+  color: #969eaa;
+  font-size: 10.5px;
+}
+
+.installLink {
+  min-height: 26px;
+  padding: 0 8px;
+  font-size: 11px;
+}
+
+.bipoBar {
+  grid-column: 1;
+  grid-row: 3;
+  min-width: 0;
+  margin: 0;
+  padding: 16px 10px 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 3px;
+  overflow-y: auto;
+  background: #fff;
+  border-right: 1px solid #d8dde5;
+}
+
+.bipoBar::before {
+  content: "OUTILS";
+  padding: 0 8px 7px;
+  color: #969eaa;
+  font-size: 10.5px;
+  font-weight: 650;
+  letter-spacing: 0.1em;
+}
+
+.bipoBar > * {
+  width: 100%;
+  min-height: 32px;
+  flex: none !important;
+}
+
+.bipoBar .btn,
+.bipoBar .homeLink {
+  justify-content: flex-start;
+  padding: 0 10px;
+  font-size: 12px;
+  text-align: left;
+}
+
+.dayLabel {
+  display: grid;
+  gap: 4px;
+  height: auto !important;
+  padding: 7px 8px;
+  color: #697180;
+  font-size: 10.5px;
+}
+
+.dayLabel input {
+  width: 100%;
+  height: 32px;
+  font-size: 12px;
+}
+
+.bipoHint {
+  grid-column: 1;
+  grid-row: 4;
+  margin: 0;
+  padding: 8px 16px 14px;
+  overflow: auto;
+  background: #fff;
+  border-right: 1px solid #d8dde5;
+  color: #697180 !important;
+  font-size: 11px;
+}
+
+.grid {
+  grid-column: 2;
+  grid-row: 3 / 5;
+  min-width: 0;
+  min-height: 0;
+  padding: 14px 16px;
+  gap: 8px;
+  overflow-y: auto;
+  align-content: start;
+  background: #f5f6f8;
+  grid-auto-rows: 112px;
+}
+
+.tile {
+  border: 1px solid rgba(17, 19, 24, 0.13);
+  border-radius: 10px;
+  box-shadow: 0 1px 2px rgba(16, 24, 40, 0.08) !important;
+  transition: transform 80ms ease, box-shadow 80ms ease;
+}
+
+.tile:hover {
+  box-shadow: 0 4px 13px rgba(16, 24, 40, 0.12) !important;
+}
+
+.tile:active {
+  transform: scale(0.985);
+  box-shadow: 0 1px 2px rgba(16, 24, 40, 0.08) !important;
+}
+
+.dots {
+  background: rgba(17, 19, 24, 0.84);
+  color: #fff;
+}
+
+.addTile {
+  background: #fff;
+  border-color: #b9c0ca;
+  color: #697180;
+}
+
+.overlay {
+  background: rgba(17, 19, 24, 0.35);
+  backdrop-filter: blur(5px);
+}
+
+.sheet {
+  background: #fff;
+  color: #111318;
+  border-color: #d8dde5;
+  box-shadow: 0 22px 70px rgba(16, 24, 40, 0.24);
+}
+
+.input,
+select,
+.cssEditor,
+.exportExplorer {
+  background: #f5f6f8 !important;
+  color: #111318 !important;
+  border-color: #d8dde5 !important;
+}
+
+.section,
+.hint,
+.field label,
+.range label,
+.bipoFoot {
+  color: #697180 !important;
+}
+
+.saveTop,
+.btn.primary {
+  background: #0a84ff !important;
+  border-color: #0877e5 !important;
+  color: #fff !important;
+}
+
+@media (max-width: 720px) {
+  body {
+    display: block;
+    min-height: 100%;
+    overflow: auto;
+  }
+
+  .top {
+    position: sticky;
+    top: 0;
+    z-index: 30;
+  }
+
+  .tabRow {
+    height: auto;
+    min-height: 35px;
+    padding: 3px 8px 6px;
+    flex-wrap: wrap;
+  }
+
+  .tabRow .tabs {
+    width: 100%;
+  }
+
+  .installBar {
+    width: 100%;
+    justify-content: flex-start;
+    overflow-x: auto;
+  }
+
+  .bipoBar {
+    padding: 7px 8px;
+    display: grid;
+    grid-template-columns: repeat(5, minmax(68px, 1fr));
+    overflow-x: auto;
+    border-right: 0;
+    border-bottom: 1px solid #d8dde5;
+  }
+
+  .bipoBar::before {
+    display: none;
+  }
+
+  .dayLabel {
+    min-width: 140px;
+  }
+
+  .bipoHint {
+    padding: 7px 10px;
+    border-right: 0;
+    border-bottom: 1px solid #d8dde5;
+  }
+
+  .grid {
+    padding: 9px 8px 18px;
+    overflow: visible;
+  }
+}
+
+@media (max-width: 430px) {
+  .brand i,
+  .coffeeBtn {
+    display: none !important;
+  }
+
+  .tools {
+    gap: 3px;
+  }
+
+  .tool {
+    flex-basis: 31px;
+    width: 31px;
+  }
+
+  .tool.lock {
+    flex-basis: 58px;
+    width: 58px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    transition: none !important;
+    animation: none !important;
+  }
+}
