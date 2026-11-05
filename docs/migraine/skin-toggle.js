@@ -5,7 +5,7 @@
   const SKINS = new Set(["dark", "light", "notemistress", "custom"]);
   const defaults = {
     name: "COUNTr",
-    subtitle: "Bipo V2",
+    subtitle: "",
     logo: "",
     favicon: "",
     primary: "#409cff",
@@ -36,9 +36,27 @@
     if (selector) selector.value = skin;
   }
 
-  function readBrand() {
-    try { return { ...defaults, ...JSON.parse(safeGet(BRAND_KEY) || "{}") }; }
+  function readBrand(boardSubtitle = "") {
+    const raw = safeGet(BRAND_KEY);
+    try { return raw ? { ...defaults, ...JSON.parse(raw) } : { ...defaults, subtitle: boardSubtitle }; }
     catch (_) { return { ...defaults }; }
+  }
+
+  function ensureBrandNodes() {
+    const brand = document.querySelector(".brand");
+    if (!brand) return "";
+    const previous = brand.textContent.trim();
+    if (!byId("whiteLabelName")) {
+      const parts = previous.split(/\s*[·|—]\s*/, 2);
+      const name = document.createElement("span");
+      const subtitle = document.createElement("i");
+      name.id = "whiteLabelName";
+      subtitle.id = "whiteLabelSubtitle";
+      name.textContent = parts[0] || "COUNTr";
+      subtitle.textContent = parts[1] || "";
+      brand.replaceChildren(name, " ", subtitle);
+    }
+    return previous.split(/\s*[·|—]\s*/, 2)[1] || "";
   }
 
   function validBrand(value) {
@@ -112,8 +130,9 @@
   }
 
   addEventListener("DOMContentLoaded", function () {
+    const boardSubtitle = ensureBrandNodes();
     applySkin(safeGet(SKIN_KEY) || "notemistress", false);
-    applyBrand(readBrand(), false);
+    applyBrand(readBrand(boardSubtitle), false);
     byId("skinSelector")?.addEventListener("change", (event) => applySkin(event.target.value));
     byId("whiteLabelPanel")?.addEventListener("input", (event) => {
       if (event.target.id === "brandFile") return;
