@@ -1,0 +1,176 @@
+/* Presentation only: no counter state or business behavior lives here. */
+:root {
+  --brand-primary: #409cff;
+  --brand-secondary: #ffcf40;
+  --focus-ring: var(--brand-primary);
+}
+
+html[data-skin="dark"] {
+  color-scheme: dark;
+  --bg: #111318 !important;
+  --panel: #1b1e24 !important;
+  --panel2: #242830 !important;
+  --line: #353a44 !important;
+  --text: #f2f4f7 !important;
+  --muted: #aeb5c0 !important;
+  --accent: #e9edf3 !important;
+}
+
+html[data-skin="light"] {
+  color-scheme: light;
+  --bg: #f4f6f8 !important;
+  --panel: #ffffff !important;
+  --panel2: #edf1f5 !important;
+  --line: #cbd2dc !important;
+  --text: #171a20 !important;
+  --muted: #596273 !important;
+  --accent: #176fd1 !important;
+}
+
+html[data-skin="notemistress"] { color-scheme: light; }
+
+body {
+  max-width: 100vw;
+  overflow-x: hidden;
+}
+
+.top {
+  min-width: 0;
+  padding-top: env(safe-area-inset-top, 0px);
+}
+
+.brand {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.tools { min-width: 0; justify-content: flex-end; }
+.helpTool { display: grid; place-items: center; text-decoration: none; }
+.tool[hidden], .coffeeBtn[hidden], .boardLogo[hidden], .brand[hidden] { display: none !important; }
+.coffeeBtn { background: var(--brand-secondary) !important; }
+.saveTop, .btn.primary { background: var(--brand-primary) !important; }
+
+.tool:hover:not(:disabled), .btn:hover:not(:disabled), .installLink:hover, .helpTool:hover { filter: brightness(1.08); }
+.tool:active:not(:disabled), .btn:active:not(:disabled), .installLink:active, .helpTool:active { transform: translateY(1px); }
+.tool:disabled, .btn:disabled { opacity: .38; cursor: not-allowed; }
+.tool:focus-visible, .btn:focus-visible, .tab:focus-visible, .tabSettings:focus-visible,
+.installLink:focus-visible, .helpTool:focus-visible, .tile:focus-visible, input:focus-visible,
+select:focus-visible, textarea:focus-visible, summary:focus-visible {
+  outline: 2px solid var(--focus-ring) !important;
+  outline-offset: 2px;
+}
+
+.tabWrap {
+  border-radius: 7px;
+  overflow: hidden;
+  flex: 0 0 auto;
+}
+.tabWrap .tab, .tabWrap .tabSettings { color: inherit !important; }
+.tabWrap .tab { background: inherit !important; }
+.tab.active { box-shadow: inset 0 0 0 2px currentColor !important; }
+
+.overlay {
+  align-items: center !important;
+  justify-content: center;
+  padding: calc(env(safe-area-inset-top, 0px) + 12px) calc(env(safe-area-inset-right, 0px) + 12px)
+    calc(env(safe-area-inset-bottom, 0px) + 12px) calc(env(safe-area-inset-left, 0px) + 12px);
+}
+.sheet, .overlay.centered .sheet {
+  width: min(100%, 620px);
+  max-height: calc(100dvh - env(safe-area-inset-top, 0px) - env(safe-area-inset-bottom, 0px) - 24px);
+  border-radius: 14px;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-gutter: stable;
+}
+.sheetHead {
+  position: sticky;
+  top: -18px;
+  z-index: 5;
+  margin: -18px -18px 14px;
+  padding: 12px 18px;
+  background: color-mix(in srgb, var(--panel) 94%, transparent);
+  border-bottom: 1px solid var(--line);
+  backdrop-filter: blur(14px);
+}
+.sheet > .actions:last-child {
+  position: sticky;
+  bottom: calc(-18px - env(safe-area-inset-bottom, 0px));
+  z-index: 5;
+  margin: 14px -18px calc(-18px - env(safe-area-inset-bottom, 0px));
+  padding: 12px 18px calc(12px + env(safe-area-inset-bottom, 0px));
+  background: color-mix(in srgb, var(--panel) 94%, transparent);
+  border-top: 1px solid var(--line);
+  backdrop-filter: blur(14px);
+}
+.brandAssetInput { min-height: 72px; resize: vertical; }
+
+html[data-skin="light"] body,
+html[data-skin="light"] .grid { background: var(--bg); color: var(--text); }
+html[data-skin="light"] .top,
+html[data-skin="light"] .tabRow,
+html[data-skin="light"] .bipoBar,
+html[data-skin="light"] .bipoHint,
+html[data-skin="light"] .sheet { background: var(--panel); color: var(--text); }
+html[data-skin="light"] .tool,
+html[data-skin="light"] .btn,
+html[data-skin="light"] .installLink,
+html[data-skin="light"] .input,
+html[data-skin="light"] select,
+html[data-skin="light"] textarea,
+html[data-skin="light"] .exportExplorer { background: var(--panel2); color: var(--text); border-color: var(--line); }
+html[data-skin="light"] .section,
+html[data-skin="light"] .hint,
+html[data-skin="light"] .field label,
+html[data-skin="light"] .range label,
+html[data-skin="light"] .bipoFoot { color: var(--muted); }
+
+@media (max-width: 720px) {
+  .top { gap: 6px; }
+  .coffeeBtn { display: none !important; }
+  .brand { max-width: 92px; }
+  .brand i { display: none; }
+  .tools { gap: 4px; }
+  .tool, .tool.lock {
+    flex: 0 0 44px !important;
+    width: 44px !important;
+    min-width: 44px;
+    min-height: 44px;
+  }
+  .tabRow { min-width: 0; flex-wrap: wrap; }
+  .tabRow .tabs { width: 100%; min-width: 0; }
+  .installBar { width: 100%; overflow-x: auto; justify-content: flex-start; }
+  .installLink, .tab, .tabSettings, .bipoBar .btn, .homeLink { min-height: 44px; }
+  .bipoBar { max-width: 100%; overflow-x: auto; flex-wrap: nowrap; }
+  .bipoBar > * { flex: 0 0 auto !important; }
+  .sheet { width: 100%; }
+  .row { flex-direction: column; gap: 0; }
+}
+
+@media (max-width: 430px) {
+  body { padding-left: max(6px, env(safe-area-inset-left, 0px)); padding-right: max(6px, env(safe-area-inset-right, 0px)); }
+  .top { padding-left: 2px; padding-right: 2px; }
+  .brand { max-width: 62px; font-size: 11px; }
+  .boardLogo { width: 24px; height: 24px; }
+  .tools { gap: 2px; }
+  .tool, .tool.lock { flex-basis: 44px !important; width: 44px !important; }
+  .grid { gap: 5px; }
+  .tile { padding: 7px; }
+  .dots { width: 32px; height: 32px; }
+  .tileBottom { min-width: 0; }
+  .name { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .actions { flex-wrap: wrap; }
+  .actions .btn { min-width: min(100%, 130px); }
+}
+
+@media (max-width: 340px) {
+  .boardLogo, .brand { display: none !important; }
+  .top { justify-content: flex-end; }
+  .tools { flex: 0 0 auto; }
+  .tool, .tool.lock { flex-basis: 44px !important; width: 44px !important; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .001ms !important; animation-iteration-count: 1 !important; transition-duration: .001ms !important; scroll-behavior: auto !important; }
+}
